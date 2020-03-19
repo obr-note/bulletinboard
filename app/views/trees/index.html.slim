@@ -1,0 +1,18 @@
+h1 スレッド一覧
+
+= link_to "スレッド新規作成", new_tree_path, class: "btn btn-primary"
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Tree.human_attribute_name(:title)
+      th= Tree.human_attribute_name(:created_at)
+      th
+  tbody
+    - @trees.each do |tree|
+      tr
+        td= tree.title
+        td= tree.created_at
+        td
+          = link_to "編集", edit_tree_path(tree), class: "btn btn-primary mr-3"

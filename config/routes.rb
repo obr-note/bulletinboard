@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  root to: "users#new"
+  root to: "trees#index"
 
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :users
+  resources :trees, only: [:index, :new, :create]
+  resources :users, only: [:show, :new, :edit, :create, :update, :destroy]
 end

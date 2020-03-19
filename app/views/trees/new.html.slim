@@ -1,0 +1,10 @@
+h1 スレッドの新規登録
+
+.nav.justify-content-end
+  = link_to "一覧", trees_path, class: "nav-link"
+
+= form_with model: @tree, local: true do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control", id: "tree_title"
+  = f.submit "登録する", class: "btn btn-primary"

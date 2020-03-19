@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_102616) do
+ActiveRecord::Schema.define(version: 2020_03_19_085726) do
+
+  create_table "responses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "text"
+    t.bigint "user_id"
+    t.bigint "tree_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tree_id"], name: "index_responses_on_tree_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
+  create_table "trees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trees_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
@@ -19,4 +37,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_102616) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "responses", "trees"
+  add_foreign_key "responses", "users"
+  add_foreign_key "trees", "users"
 end
