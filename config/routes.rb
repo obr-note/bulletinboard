@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  resources :trees, only: [:index, :new, :create]
+  post "/responses", to: "responses#create"
+  
   resources :users, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :trees, only: [:index, :show, :new, :create]
+  
 end

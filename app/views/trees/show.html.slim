@@ -1,0 +1,24 @@
+h1= @tree.title
+
+= link_to "スレッド一覧", trees_path, class: "btn btn-primary"
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Response.human_attribute_name(:text)
+      th= Response.human_attribute_name(:user_id)
+      th= Response.human_attribute_name(:created_at)
+  tbody
+    - @responses.each do |response|
+      tr
+        td= response.text
+        td= response.user_id
+        td= response.created_at
+
+= form_with model: @response, url_for: { controller: :responses, action: :create }, local: true do |f|
+  .form-group
+    = f.label :text, "コメント"
+    = f.text_field :text, class: "form-control", id: "response_text"
+  = f.hidden_field :tree_id
+  = f.submit "投稿", class: "btn btn-primary"

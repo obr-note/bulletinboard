@@ -1,6 +1,14 @@
 class TreesController < ApplicationController
+  before_action :login_required, only: [:new, :create]
+
   def index
     @trees = Tree.all.order(created_at: :desc)
+  end
+
+  def show
+    @tree = Tree.find(params[:id])
+    @response = Response.new(:tree_id => params[:id])
+    @responses = @tree.responses.all
   end
 
   def new
