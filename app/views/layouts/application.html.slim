@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title
+      | Bulletinboard
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      = link_to "BulletinBoard", root_url, class: "navbar-brand"
+
+      ul.navbar-nav.ml-auto
+        li.nav-itme= link_to "スレッド一覧", trees_path, class: "nav-link"
+        - if current_user
+          li.nav-item= link_to "ログアウト", logout_path, method: :delete, class: "nav-link"
+        - else
+          li.nav-item= link_to "サインアップ", new_user_path, class: "nav-link"
+          li.nav-item= link_to "ログイン", login_path, class: "nav-link"
+    .container
+      - if flash.notice.present?
+        .alert.alert-success= flash.notice
+      検索
+      = form_tag(search_path, :method => "get") do
+        = text_field_tag :search
+        = submit_tag "Search", :name => nil
+      = yield
