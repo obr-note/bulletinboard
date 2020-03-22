@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   post "/responses", to: "responses#create"
+
+  get "/search", to: "search#search"
   
   resources :users, only: [:show, :new, :edit, :create, :update, :destroy]
   resources :trees, only: [:index, :show, :new, :create]

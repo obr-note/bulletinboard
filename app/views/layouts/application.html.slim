@@ -21,4 +21,8 @@ html
     .container
       - if flash.notice.present?
         .alert.alert-success= flash.notice
+      検索
+      = form_tag(search_path, :method => "get") do
+        = text_field_tag :search
+        = submit_tag "Search", :name => nil
       = yield
