@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_085726) do
+ActiveRecord::Schema.define(version: 2020_03_20_092736) do
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "responses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text"
@@ -20,6 +26,15 @@ ActiveRecord::Schema.define(version: 2020_03_19_085726) do
     t.datetime "updated_at", null: false
     t.index ["tree_id"], name: "index_responses_on_tree_id"
     t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
+  create_table "tree_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "tree_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_tree_categories_on_category_id"
+    t.index ["tree_id"], name: "index_tree_categories_on_tree_id"
   end
 
   create_table "trees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,5 +54,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_085726) do
 
   add_foreign_key "responses", "trees"
   add_foreign_key "responses", "users"
+  add_foreign_key "tree_categories", "categories"
+  add_foreign_key "tree_categories", "trees"
   add_foreign_key "trees", "users"
 end

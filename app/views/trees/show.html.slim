@@ -1,4 +1,6 @@
 h1= @tree.title
+- @tree.categories.each do |category|
+  = category.name
 
 = link_to "スレッド一覧", trees_path, class: "btn btn-primary"
 

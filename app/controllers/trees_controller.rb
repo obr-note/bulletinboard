@@ -28,6 +28,6 @@ class TreesController < ApplicationController
   private
 
   def tree_params
-    params.require(:tree).permit(:title)
+    params.require(:tree).permit(:title, category_ids: [])
   end
 end
