@@ -70,6 +70,11 @@ li {
   list-style: none;
 }
 
+.alert {
+  padding-top: 80px;
+  color: #333333;
+}
+
 /* =======================
 header
 ======================= */
@@ -374,5 +379,25 @@ footer {
         padding: 5px 5px;
     }
     
+  }
+}
+
+/* =======================
+検索結果
+======================= */
+.search {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .search-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 60px;
+    }
   }
 }

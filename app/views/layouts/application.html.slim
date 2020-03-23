@@ -12,7 +12,7 @@ html
   body
     / ヘッダー
     header
-      .container
+      .container.clear
         = link_to "BULLUTIN BOARD", root_url, class: "header-logo"
         ul.header-nav
           - if current_user
@@ -26,7 +26,6 @@ html
     / アラート
     - if flash.notice.present?
       .alert.alert-success= flash.notice
-    .container
 
     / 内容
     = yield

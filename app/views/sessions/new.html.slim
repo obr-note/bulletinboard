@@ -1,7 +1,7 @@
 section.login
   .container
     p.login-title ログイン画面
-
+    
     = form_with scope: :session, local: true do |f|
       .login-form-mail
         = f.label :email, "メールアドレス"

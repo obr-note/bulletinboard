@@ -1,34 +1,35 @@
-h1 検索結果
+section.search
+  .container
+    p.search-title 検索結果
 
-h2 スレ
+    h3 スレッド
+    .mb-3
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th= Tree.human_attribute_name(:title)
+          th= "ユーザー名"
+          th= Tree.human_attribute_name(:created_at)
+      tbody
+        - @trees.each do |tree|
+          tr
+            td= link_to tree.title, tree_path(tree)
+            td= tree.user.name
+            td= tree.created_at
 
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Tree.human_attribute_name(:title)
-      th= Tree.human_attribute_name(:user_id)
-      th= Tree.human_attribute_name(:created_at)
-  tbody
-    - @trees.each do |tree|
-      tr
-        td= link_to tree.title, tree_path(tree)
-        td= tree.user_id
-        td= tree.created_at
-
-h2 レス
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Response.human_attribute_name(:text)
-      th= Response.human_attribute_name(:user_id)
-      th= Response.human_attribute_name(:created_at)
-      th
-  tbody
-    - @responses.each do |response|
-      tr
-        td= response.text
-        td= response.user_id
-        td= response.created_at
-        td= link_to "該当スレ", tree_path(response.tree_id)
+    h3 レス
+    .mb-3
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th= Response.human_attribute_name(:text)
+          th= "ユーザー名"
+          th= Response.human_attribute_name(:created_at)
+          th
+      tbody
+        - @responses.each do |response|
+          tr
+            td= response.text
+            td= response.user.name
+            td= response.created_at
+            td= link_to "該当スレ", tree_path(response.tree_id)

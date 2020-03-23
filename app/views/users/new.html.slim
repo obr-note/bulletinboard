@@ -3,7 +3,7 @@ section.signup
     p.signup-title ユーザー登録
 
     - if @user.errors.present?
-      ul#error_explanation
+      ul#error_explanation.alert
         - @user.errors.full_messages.each do |message|
           li= message
 
