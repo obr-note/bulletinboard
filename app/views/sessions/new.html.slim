@@ -1,10 +1,17 @@
-h1 ログイン画面
+section.login
+  .container
+    p.login-title ログイン画面
 
-= form_with scope: :session, local: true do |f|
-  .form-group
-    = f.label :email, "メールアドレス"
-    = f.text_field :email, class: "form-control", id: "session_email"
-  .form-group
-    = f.label :password, "パスワード"
-    = f.password_field :password, class: "form-control", id: "session_password"
-  = f.submit "ログインする", class: "btn btn-primary"
+    = form_with scope: :session, local: true do |f|
+      .login-form-mail
+        = f.label :email, "メールアドレス"
+        = f.text_field :email, class: "form-control"
+      .login-form-pass
+        = f.label :password, "パスワード"
+        = f.password_field :password, class: "form-control"
+      = f.submit "ログインする", class: "login-form-submit"
+    
+    = form_with scope: :session, local: true do |f|
+      = f.hidden_field :email, :value => "guest@guest.jp"
+      = f.hidden_field :password, :value => "password"
+      = f.submit "ゲストとしてログインする", class: "login-form-submit guest"

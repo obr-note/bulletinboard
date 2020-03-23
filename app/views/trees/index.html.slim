@@ -1,17 +1,24 @@
-h1 スレッド一覧
+section.tree
+  .container
+    p.tree-title スレッド一覧
 
-= link_to "スレッド新規作成", new_tree_path, class: "btn btn-primary"
+    .tree-search
+      = form_tag(search_path, :method => "get") do
+        = text_field_tag :search, "", placeholder: "キーワードを入力"
+        = submit_tag "検索", :name => nil, class: "tree-form-tag"
 
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Tree.human_attribute_name(:title)
-      th= Tree.human_attribute_name(:user_id)
-      th= Tree.human_attribute_name(:created_at)
-  tbody
-    - @trees.each do |tree|
-      tr
-        td= link_to tree.title, tree_path(tree)
-        td= tree.user_id
-        td= tree.created_at
+    = link_to "スレッド新規作成", new_tree_path, class: "tree-create"
+
+    .mb-3
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th= Tree.human_attribute_name(:title)
+          th= "名前"
+          th= Tree.human_attribute_name(:created_at)
+      tbody
+        - @trees.each do |tree|
+          tr
+            td= link_to tree.title, tree_path(tree)
+            td= tree.user.name
+            td= tree.created_at

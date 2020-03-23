@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   helper_method :current_user
-  helper_method :login_required
+  before_action :login_required
 
   private
 

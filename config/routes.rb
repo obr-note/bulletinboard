@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get "/search", to: "search#search"
   
-  resources :users, only: [:show, :new, :edit, :create, :update, :destroy]
+  resources :users, only: [:show, :new, :create, :destroy]
   resources :trees, only: [:index, :show, :new, :create]
   
 end

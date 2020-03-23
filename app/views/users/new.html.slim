@@ -1,3 +1,23 @@
-h1 ユーザー登録
+section.signup
+  .container
+    p.signup-title ユーザー登録
 
-= render partial: "form", locals: { user: @user }
+    - if @user.errors.present?
+      ul#error_explanation
+        - @user.errors.full_messages.each do |message|
+          li= message
+
+    = form_with model: @user, local: true do |f|
+      .signup-form-name
+        = f.label :name, "名前"
+        = f.text_field :name, class: "form-control"
+      .signup-form-mail
+        = f.label :email, "メールアドレス"
+        = f.text_field :email, class: "form-control"
+      .signup-form-pass
+        = f.label :password, "パスワード"
+        = f.password_field :password, class: "form-control"
+      .signup-form-pass
+        = f.label :password_confirmation, "パスワード（確認）"
+        = f.password_field :password_confirmation, class: "form-control"
+      = f.submit "登録する", class: "signup-form-submit"

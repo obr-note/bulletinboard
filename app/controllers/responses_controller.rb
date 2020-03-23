@@ -1,6 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :login_required
-
+  
   def create
     @response = current_user.responses.new(response_params)
 

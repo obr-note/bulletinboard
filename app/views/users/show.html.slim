@@ -1,16 +1,17 @@
-h1 ユーザーの詳細
+section.user
+  .container
+    p.user-title ユーザー情報
 
-table.table.table-hover
-  tbody
-    tr
-      th= User.human_attribute_name(:email)
-      th= @user.email
-    tr
-      th= User.human_attribute_name(:created_at)
-      th= @user.created_at
-    tr
-      th= User.human_attribute_name(:updated_at)
-      th= @user.updated_at
+    table.table.table-hover
+      tbody
+        tr
+          th= User.human_attribute_name(:name)
+          th= @user.name
+        tr
+          th= User.human_attribute_name(:email)
+          th= @user.email
+        tr
+          th= User.human_attribute_name(:created_at)
+          th= @user.created_at
 
-= link_to "編集", edit_user_path, class: "btn btn-primary mr-3"
-= link_to "削除", @user, method: :delete, data: { confirm: "ユーザー「#{@user.email}」を削除します。よろしいですか？" }, class: "btn btn-danger"
+    = link_to "削除", @user, method: :delete, data: { confirm: "ユーザー「#{@user.email}」を削除します。よろしいですか？" }, class: "btn btn-danger"

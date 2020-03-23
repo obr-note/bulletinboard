@@ -1,1 +1,378 @@
 @import "bootstrap";
+
+/* =================
+レスポンシブ対応設定
+================= */
+
+// レイアウト幅
+$layout-width-inner: 1100px;
+
+// ブレークポイント
+$breakpoints: (
+  "sp": "screen and (max-width: 767px)",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})"
+);
+
+// メディアクエリ
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/* =======================
+共通部分
+======================= */
+body {
+  color: #333333;
+  line-height: 1.5;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: #333333;
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  max-width: 1100px;
+}
+
+.clear::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+li {
+  list-style: none;
+}
+
+/* =======================
+header
+======================= */
+header {
+  background: #00a5dd;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 70px;
+  .header-logo {
+    float: left;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 70px;
+
+    // レスポンシブ対応
+    @include mq("sp") {
+      display: none;
+    }
+  }
+  .header-nav {
+    float: right;
+    font-weight: bold;
+    line-height: 70px;
+    .header-nav-item {
+      float: left;
+      margin-left: 30px;
+    }
+  }
+}
+
+/* =======================
+footer
+======================= */
+footer {
+  background: #00a5dd;
+  color: #ffffff;
+  text-align: center;
+  height: 50px;
+  small {
+    line-height: 50px;
+  }
+}
+
+/* =======================
+ログイン
+======================= */
+.login {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .login-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+    }
+    form {
+      .login-form-mail,
+      .login-form-pass {
+        margin: 30px auto;
+        width: 100%;
+        max-width: 500px;
+        label {
+          float: left;
+        }
+      }
+      .login-form-submit {
+        margin-bottom: 30px;
+        padding: 10px 10px;
+        border-radius: 30px;
+        width: 100%;
+        max-width: 300px;
+        background: #1760a0;
+        color: #fff;
+        &:hover {
+          opacity: 0.7;
+        }
+        &.guest {
+          background: #888888;
+        }
+      }
+    }
+  }
+}
+
+/* =======================
+サインアップ
+======================= */
+.signup {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .signup-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+    }
+    form {
+      .signup-form-name,
+      .signup-form-mail,
+      .signup-form-pass {
+        margin: 30px auto;
+        width: 100%;
+        max-width: 500px;
+        label {
+          float: left;
+        }
+      }
+      .signup-form-submit {
+        margin-bottom: 30px;
+        padding: 10px 10px;
+        border-radius: 30px;
+        width: 100%;
+        max-width: 300px;
+        background: #1760a0;
+        color: #fff;
+        &:hover {
+          opacity: 0.7;
+        }
+        &.guest {
+          background: #888888;
+        }
+      }
+    }
+  }
+}
+
+/* =======================
+ユーザー情報
+======================= */
+.user {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .user-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 60px;
+    }
+  }
+}
+
+/* =======================
+スレッド一覧
+======================= */
+.tree {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .tree-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 60px;
+    }
+  }
+  .tree-search {
+    form {
+      padding-bottom: 30px;
+      #search {
+        padding: 5px 10px;
+        line-height: 30px;
+        border-radius: 30px;
+        border: 1px solid #555555;
+        width: 300px;
+      }
+      .tree-form-tag {
+        padding: 5px 10px;
+        margin-left: 5px;
+        line-height: 30px;
+        border-radius: 30px;
+        width: 100px;
+        background: #1760a0;
+        color: #fff;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  .tree-create {
+    padding: 15px 30px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 600px;
+    background: #00a5dd;
+    color: #fff;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  table {
+    margin: 30px 0;
+  }
+}
+
+/* =======================
+スレッド作成
+======================= */
+.treenew {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .treenew-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 60px;
+    }
+
+    form {
+      padding-bottom: 30px;
+      .treenew-form-title {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        margin-bottom: 30px;
+        label {
+          float: left;
+        }
+      }
+      .treenew-form-category {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        margin-bottom: 30px;
+        .treenew-form-category-label {
+          width: 100%;
+          display: block;
+          height: 30px;
+          label {
+            float: left;
+          }
+        }
+        .treenew-form-category-input {
+          label {
+            margin-right: 30px;
+          }
+        }
+      }
+      .treenew-form-submit {
+        padding: 5px 10px;
+        margin-left: 5px;
+        line-height: 30px;
+        border-radius: 30px;
+        width: 200px;
+        background: #1760a0;
+        color: #fff;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
+
+/* =======================
+レスポンス
+======================= */
+.response {
+  padding-top: 100px;
+  padding-bottom: 30px;
+  .container {
+    text-align: center;
+    .response-title {
+      font-size: 30px;
+      font-weight: bold;
+      padding: 10px 0;
+      border-bottom: 3px solid #1760a0;
+      width: 300px;
+      margin: auto;
+      margin-bottom: 60px;
+    }
+    .item {
+        margin-right: 10px;
+        display: inline;
+        font-weight: bold;
+        list-style: none;
+        background: #ffbf1f;
+        padding: 5px 5px;
+    }
+    
+  }
+}
